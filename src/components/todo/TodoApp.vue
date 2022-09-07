@@ -10,6 +10,7 @@ export default {
       completedClass: "completed",
       notCompletedClass: "not-completed",
       completedDefault: "completed-default",
+      text: "",
     };
   },
   props: {
@@ -65,7 +66,8 @@ export default {
     getDate(todo) {
       return moment(todo.date).format("LLL");
     },
-    async addTodoItem(text) {
+    async addTodoItem() {
+      const text = this.text;
       const todo = {
         id: uuidv4(),
         title: text,
@@ -73,7 +75,7 @@ export default {
         date: moment().format("LLL"),
       };
       this.todoList.push(todo);
-      this.$refs["todo-input"].value = "";
+      this.text = "";
       await axios.post("http://localhost:3000/api/v1/todo", todo);
     },
   },
@@ -88,7 +90,7 @@ export default {
     <div class="todo-list-heading">{{ headingText }}</div>
     <input
       v-model="text"
-      v-on:keyup.enter="addTodoItem(text)"
+      v-on:keyup.enter="addTodoItem()"
       class="input-text"
       ref="todo-input"
     />
