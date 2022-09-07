@@ -6,7 +6,7 @@ steps:
    
   displayName: 'Install Dependencies'
 - script: |
-   npm run test:unit
+   npm run test
 
    displayName: 'Testing the application'
 - script: |
