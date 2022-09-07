@@ -8,11 +8,11 @@ steps:
   - script: |
       npm run test
 
-      displayName: 'Testing the application'
+    displayName: "Testing the application"
   - script: |
       npm run build
 
-      displayName: 'Build the Project'
+    displayName: "Build the Project"
 
   - task: CopyFiles@2
     displayName: "Copy Files"
