@@ -1,31 +1,31 @@
 pool:
   name: Azure Pipelines
 steps:
-- script: |
-   npm install
-   
-  displayName: 'Install Dependencies'
-- script: |
-   npm run test
+  - script: |
+      npm install
 
-   displayName: 'Testing the application'
-- script: |
-   npm run build
-   
-  displayName: 'Build the Project'
+    displayName: "Install Dependencies"
+  - script: |
+      npm run test
 
-- task: CopyFiles@2
-  displayName: 'Copy Files'
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/dist'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      displayName: 'Testing the application'
+  - script: |
+      npm run build
 
-- task: ArchiveFiles@2
-  displayName: 'Archive $(Build.ArtifactStagingDirectory)'
-  inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+      displayName: 'Build the Project'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: staticvueweb'
-  inputs:
-    ArtifactName: staticvueweb
+  - task: CopyFiles@2
+    displayName: "Copy Files"
+    inputs:
+      SourceFolder: "$(Build.SourcesDirectory)/dist"
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+
+  - task: ArchiveFiles@2
+    displayName: "Archive $(Build.ArtifactStagingDirectory)"
+    inputs:
+      rootFolderOrFile: "$(Build.ArtifactStagingDirectory)"
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifact: staticvueweb"
+    inputs:
+      ArtifactName: staticvueweb
